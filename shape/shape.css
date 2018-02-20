@@ -1,0 +1,29 @@
+#shape {
+    position:relative;
+    margin:auto;
+    width:400px;
+    height:400px;
+    vertical-align:center;
+}
+ 
+.shape-input-box {
+    padding-top: 10px;
+}
+
+#shape b {
+    position:absolute;
+    color:rgb(91,111,135);
+}
+
+.num-input {
+    max-width: 120px !important;
+    margin-left: 10px;
+}
+
+.shape-title {
+    max-width: 220px
+}
+
+.shape-btn {
+    margin-left: 10px;
+}

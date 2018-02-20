@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Computer Graphics 1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="shape.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div style="padding-left:40%"><h2>2D Drawing</h2></div>
+        <div class="col-md-12 col-sm-6 col-lg-12 form-inline shape-input-box">
+            <div class="shape-title">
+                <h3>Draw Circle: </h3>
+            </div>
+            <input type="text" id="circleX" class="form-control input-sm col-lg-3 col-sm-3 num-input" placeholder="Point X" aria-label="circleX">
+            <input type="text" id="circleY" class="form-control input-sm col-lg-3 col-sm-3 num-input" placeholder="Point Y" aria-label="circleY">
+            <input type="text" id="radius" class="form-control input-sm col-lg-3 col-sm-3 num-input" placeholder="Enter Radius" aria-label="radius">
+            <button type="button" onclick="drawCircleShape()" class="form-control btn btn-primary btn-md shape-btn">Draw Circle</button>
+            <button type="button" onclick="clearCircle()" class="form-control btn btn-danger btn-md shape-btn">Clear Circle</button>
+        </div>
+        <div class="col-md-12 col-sm-6 col-lg-12 form-inline shape-input-box">
+            <div class="shape-title">
+                <h3>Draw Line: </h3>
+            </div>
+            <input type="text" id="lineX0" class="form-control input-sm col-lg-3 col-sm-3 num-input" placeholder="Point X0" aria-label="lineX0">
+            <input type="text" id="lineY0" class="form-control input-sm col-lg-3 col-sm-3 num-input" placeholder="Point Y0" aria-label="lineY0">
+            <input type="text" id="lineX1" class="form-control input-sm col-lg-3 col-sm-3 num-input" placeholder="Point X1" aria-label="lineX1">
+            <input type="text" id="lineY1" class="form-control input-sm col-lg-3 col-sm-3 num-input" placeholder="Point Y1" aria-label="lineY1">
+            <button type="button" onclick="drawLineShape()" class="form-control btn btn-primary btn-md shape-btn">Draw Line</button>
+            <button type="button" onclick="clearLine()" class="form-control btn btn-danger btn-md shape-btn">Clear Line</button>
+        </div>
+        <div class="col-md-12 col-sm-6 col-lg-12 form-inline shape-input-box">
+            <div class="shape-title">
+                <h3>Draw Ellipse: </h3>
+            </div>
+            <input type="text" id="Xc" class="form-control input-sm col-lg-3 col-sm-3 num-input" placeholder="Point Xc" aria-label="Xc">
+            <input type="text" id="Yc" class="form-control input-sm col-lg-3 col-sm-3 num-input" placeholder="Point Yc" aria-label="Yc">
+            <input type="text" id="ellipseA" class="form-control input-sm col-lg-3 col-sm-3 num-input" placeholder="Point a" aria-label="Enter a">
+            <input type="text" id="ellipseB" class="form-control input-sm col-lg-3 col-sm-3 num-input" placeholder="Point b" aria-label="Enter b">
+            <button type="button" onclick="drawEllipseShape()" class="form-control btn btn-primary btn-md shape-btn">Draw Ellipse</button>
+            <button type="button" onclick="clearEllipse()" class="form-control btn btn-danger btn-md shape-btn">Clear Ellipse</button>
+        </div>
+        <div class="col-md-12 col-sm-6 col-lg-12 form-inline shape-input-box">
+            <div class="shape-title">
+                <h3>Draw Rectangle: </h3>
+            </div>
+            <input type="text" id="rectX" class="form-control input-sm col-lg-3 col-sm-3 num-input" placeholder="Point X" aria-label="rectX">
+            <input type="text" id="rectY" class="form-control input-sm col-lg-3 col-sm-3 num-input" placeholder="Point Y" aria-label="rectY">
+            <input type="text" id="rectW" class="form-control input-sm col-lg-3 col-sm-3 num-input" placeholder="Width" aria-label="rectW">
+            <input type="text" id="rectH" class="form-control input-sm col-lg-3 col-sm-3 num-input" placeholder="Height" aria-label="rectH">
+            <button type="button" onclick="drawRectangleShape()" class="form-control btn btn-primary btn-md shape-btn">Draw Rectangle</button>
+            <button type="button" onclick="clearRectangle()" class="form-control btn btn-danger btn-md shape-btn">Clear Rectangle</button>
+        </div>
+        <div class="col-md-12 col-sm-6 col-lg-12 form-inline shape-input-box">
+            <div class="shape-title">
+                <h3>Draw Polygon: </h3>
+            </div>
+            <button type="button" onclick="drawPolygonShape()" class="form-control btn btn-primary btn-md shape-btn">Draw Polygon</button>
+            <button type="button" onclick="clearPolyShape()" class="form-control btn btn-danger btn-md shape-btn">Clear Polygon</button>
+        </div>
+        <div class="col-md-12 col-sm-6 col-lg-12 form-inline shape-input-box">
+            <div class="shape-title">
+                <h3>Draw Polyline: </h3>
+            </div>
+            <button type="button" onclick="drawPolylineShape()" class="form-control btn btn-primary btn-md shape-btn">Draw Polyline</button>
+            <button type="button" onclick="clearPolyShape()" class="form-control btn btn-danger btn-md shape-btn">Clear Polyline</button>
+        </div>
+        <div style="margin:15% 0 0 10%">
+            <span id="shape"></span>
+            <canvas id="polyCanvas"></canvas>
+        </div>
+    </div>
+    <script src="shape.js"></script>
+</body>
+
+</html>
