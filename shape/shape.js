@@ -7,28 +7,27 @@ function drawCircleShape() {
 }
 
 function circleMidPoint(x0, y0, radius) {
-    $("#shape").empty(); 
+    $("#shape").empty();
     var x = radius, y = 0;
-    var radiusError = 1-x;
-   
-    while(x >= y) {
-      drawPixel(x + x0, y + y0);
-      drawPixel(y + x0, x + y0);
-      drawPixel(-x + x0, y + y0);
-      drawPixel(-y + x0, x + y0);
-      drawPixel(-x + x0, -y + y0);
-      drawPixel(-y + x0, -x + y0);
-      drawPixel(x + x0, -y + y0);
-      drawPixel(y + x0, -x + y0);
-   
-      y++;
-      if(radiusError<0)
-          radiusError+=2*y+1;
-      else
-          {
-          x--;
-          radiusError+=2*(y-x+1);
-      }
+    var radiusError = 1 - x;
+
+    while (x >= y) {
+        drawPixel(x + x0, y + y0);
+        drawPixel(y + x0, x + y0);
+        drawPixel(-x + x0, y + y0);
+        drawPixel(-y + x0, x + y0);
+        drawPixel(-x + x0, -y + y0);
+        drawPixel(-y + x0, -x + y0);
+        drawPixel(x + x0, -y + y0);
+        drawPixel(y + x0, -x + y0);
+
+        y++;
+        if (radiusError < 0)
+            radiusError += 2 * y + 1;
+        else {
+            x--;
+            radiusError += 2 * (y - x + 1);
+        }
     }
 }
 
@@ -48,20 +47,20 @@ function drawLineShape() {
     lineMidPoint(x0, y0, x1, y1);
 }
 
-function lineMidPoint (x0,y0,x1,y1) {
-     $("#shape").empty(); 
-    var dx = Math.abs(x1-x0);
-    var dy = Math.abs(y1-y0);
+function lineMidPoint(x0, y0, x1, y1) {
+    $("#shape").empty();
+    var dx = Math.abs(x1 - x0);
+    var dy = Math.abs(y1 - y0);
     var sx = (x0 < x1) ? 1 : -1;
     var sy = (y0 < y1) ? 1 : -1;
-    var err = dx-dy;
+    var err = dx - dy;
 
-    while(true){
-        drawPixel(x0,y0);
-        if ((x0==x1) && (y0==y1)) break;
-        var e2 = 2*err;
-        if (e2 >-dy){ err -= dy; x0  += sx; }
-        if (e2 < dx){ err += dx; y0  += sy; }
+    while (true) {
+        drawPixel(x0, y0);
+        if ((x0 == x1) && (y0 == y1)) break;
+        var e2 = 2 * err;
+        if (e2 > -dy) { err -= dy; x0 += sx; }
+        if (e2 < dx) { err += dx; y0 += sy; }
     }
 }
 
@@ -82,7 +81,7 @@ function drawEllipseShape() {
     ellipseMidPoint(xc, yc, a, b);
 }
 
-function ellipsePlotPoints (xc,yc,  x,  y) {
+function ellipsePlotPoints(xc, yc, x, y) {
     drawPixel(xc + x, yc + y);
     drawPixel(xc - x, yc + y);
     drawPixel(xc + x, yc - y);
@@ -102,36 +101,36 @@ function ellipseMidPoint(xc, yc, a, b) {
     var py = twoa2 * y;
 
     /* Plot the initial point in each quadrant. */
-    ellipsePlotPoints (xc,yc, x, y);
+    ellipsePlotPoints(xc, yc, x, y);
 
     /* Region 1 */
-    p = Math.round (b2 - (a2 * b) + (0.25 * a2));
+    p = Math.round(b2 - (a2 * b) + (0.25 * a2));
     while (px < py) {
         x++;
         px += twob2;
         if (p < 0)
-        p += b2 + px;
+            p += b2 + px;
         else {
-        y--;
-        py -= twoa2;
-        p += b2 + px - py;
+            y--;
+            py -= twoa2;
+            p += b2 + px - py;
         }
-        ellipsePlotPoints (xc,yc, x, y);
+        ellipsePlotPoints(xc, yc, x, y);
     }
 
     /* Region 2 */
-    p = Math.round (b2 * (x+0.5) * (x+0.5) + a2 * (y-1) * (y-1) - a2 * b2);
+    p = Math.round(b2 * (x + 0.5) * (x + 0.5) + a2 * (y - 1) * (y - 1) - a2 * b2);
     while (y > 0) {
         y--;
         py -= twoa2;
         if (p > 0)
-        p += a2 - py;
+            p += a2 - py;
         else {
-        x++;
-        px += twob2;
-        p += a2 - py + px;
+            x++;
+            px += twob2;
+            p += a2 - py + px;
         }
-        ellipsePlotPoints (xc,yc, x, y);
+        ellipsePlotPoints(xc, yc, x, y);
     }
 }
 
@@ -143,33 +142,34 @@ function clearEllipse() {
     document.getElementById('ellipseB').value = "";
 }
 
-function drawRectline(x0,y0,x1,y1) {
-   var dx = Math.abs(x1-x0);
-   var dy = Math.abs(y1-y0);
-   var sx = (x0 < x1) ? 1 : -1;
-   var sy = (y0 < y1) ? 1 : -1;
-   var err = dx-dy;
+function drawRectline(x0, y0, x1, y1) {
+    var dx = Math.abs(x1 - x0);
+    var dy = Math.abs(y1 - y0);
+    var sx = (x0 < x1) ? 1 : -1;
+    var sy = (y0 < y1) ? 1 : -1;
+    var err = dx - dy;
 
-   while(true){
-    drawPixel(x0,y0);
+    while (true) {
+        drawPixel(x0, y0);
 
-     if ((x0==x1) && (y0==y1)) break;
-     var e2 = 2*err;
-     if (e2 >-dy){ err -= dy; x0  += sx; }
-     if (e2 < dx){ err += dx; y0  += sy; }
-   }
+        if ((x0 == x1) && (y0 == y1)) break;
+        var e2 = 2 * err;
+        if (e2 > -dy) { err -= dy; x0 += sx; }
+        if (e2 < dx) { err += dx; y0 += sy; }
+    }
 }
 
+// draw rectangle using mid point line algorithm
 function drawRectangleShape() {
     $("#shape").empty();
     var x = parseInt(document.getElementById('rectX').value);
     var y = parseInt(document.getElementById('rectY').value);
-    var w = parseInt(document.getElementById('rectW').value);debugger
+    var w = parseInt(document.getElementById('rectW').value);
     var h = parseInt(document.getElementById('rectH').value);
-    drawRectline(x, y, x+w, y);
-    drawRectline(x, y, x, y+h);
-    drawRectline(x, y+h, x+w, y+h);
-    drawRectline(x+w, y, x+w, y+h);
+    drawRectline(x, y, x + w, y);
+    drawRectline(x, y, x, y + h);
+    drawRectline(x, y + h, x + w, y + h);
+    drawRectline(x + w, y, x + w, y + h);
 }
 
 function clearRectangle() {
@@ -179,31 +179,56 @@ function clearRectangle() {
 var polyCanvas = document.getElementById('polyCanvas');
 var ctx = polyCanvas.getContext('2d');
 
-function drawPolygonShape() {
+// draw polygon
+function drawPolygonShape(n) {
     ctx.clearRect(0, 0, polyCanvas.width, polyCanvas.height);
-    ctx.fillStyle = '#000';
+    var numberOfSides = n,
+        size = 60,
+        Xcenter = 75,
+        Ycenter = 75;
     ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.lineTo(100,50);
-    ctx.lineTo(50, 100);
-    ctx.lineTo(0, 90);
-    ctx.closePath();
-    ctx.fill();
+    ctx.moveTo(Xcenter + size * Math.cos(0), Ycenter + size * Math.sin(0));
+    for (var i = 1; i <= numberOfSides; i += 1) {
+        ctx.lineTo(Xcenter + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter + size * Math.sin(i * 2 * Math.PI / numberOfSides));
+    }
+    ctx.strokeStyle = "#000000";
+    ctx.lineWidth = 1;
+    ctx.stroke();
 }
 
+// draw polyline
 function drawPolylineShape() {
     ctx.clearRect(0, 0, polyCanvas.width, polyCanvas.height);
     ctx.beginPath();
-    ctx.moveTo(20,20);
-    ctx.lineTo(20,100);
-    ctx.lineTo(70,100);
-    ctx.stroke(); 
+    ctx.moveTo(20, 20);
+    ctx.lineTo(20, 100);
+    ctx.lineTo(70, 100);
+    ctx.stroke();
+}
+
+function drawPolylineShape1() {
+    ctx.clearRect(0, 0, polyCanvas.width, polyCanvas.height);
+    ctx.beginPath();
+    ctx.moveTo(20, 20);
+    ctx.lineTo(20, 100);
+    ctx.lineTo(80, 20);
+    ctx.lineTo(100, 180);
+    ctx.stroke();
+}
+
+function drawPolylineShape2() {
+    ctx.clearRect(0, 0, polyCanvas.width, polyCanvas.height);
+    ctx.beginPath();
+    ctx.moveTo(20, 80);
+    ctx.lineTo(100, 10);
+    ctx.lineTo(180, 80);
+    ctx.stroke();
 }
 
 function clearPolyShape() {
     ctx.clearRect(0, 0, polyCanvas.width, polyCanvas.height);
 }
 
-function drawPixel(mx,my) {
-    $("#shape").append("<b style='left:"+mx+"px;top:"+my+"px'>.</b>");
+function drawPixel(mx, my) {
+    $("#shape").append("<b style='left:" + mx + "px;top:" + my + "px'>.</b>");
 }
